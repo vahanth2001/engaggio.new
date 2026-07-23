@@ -1,64 +1,146 @@
-// ===============================
-// COMPONENT LOADER
-// ===============================
-
-async function loadComponent(targetId, file) {
-    try {
-        const response = await fetch(file);
-
-        if (!response.ok) {
-            throw new Error(`Unable to load ${file}`);
-        }
-
-        document.getElementById(targetId).innerHTML = await response.text();
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-// ===============================
+// =========================================
 // ROUTES
-// ===============================
+// =========================================
 
 const routes = {
-    "/": "pages/home.html",
-    "/overview": "pages/overview.html",
-    "/team": "pages/team.html",
-    "/careers": "pages/careers.html",
-    "/contact": "pages/contact.html",
-    "/insights": "pages/insights.html",
-    "/BeIntelli-2": "pages/BeIntelli-2.html",
-    "/beenai": "pages/beenai.html"
+    "/": "home",
+    "/index.html": "home",
+    "/overview": "overview",
+    "/team": "team",
+    "/careers": "careers",
+    "/contact": "contact",
+    "/insights": "insights",
+    "/BeIntelli-2": "beintelli",
+    "/beenai": "beenai"
 };
 
-// ===============================
-// PAGE LOADER
-// ===============================
+// =========================================
+// LOAD HTML
+// =========================================
+
+async function loadHTML(containerId, file) {
+
+    const response = await fetch(file);
+
+    if (!response.ok) {
+        throw new Error(file + " not found");
+    }
+
+    document.getElementById(containerId).innerHTML =
+        await response.text();
+}
+
+// =========================================
+// LOAD CSS
+// =========================================
+
+function loadCSS(id, file) {
+
+    let css = document.getElementById(id);
+
+    if (css) css.remove();
+
+    css = document.createElement("link");
+
+    css.id = id;
+    css.rel = "stylesheet";
+    css.href = file;
+
+    document.head.appendChild(css);
+}
+
+// =========================================
+// LOAD JS
+// =========================================
+
+function loadJS(id, file) {
+
+    const old = document.getElementById(id);
+
+    if (old) old.remove();
+
+    const script = document.createElement("script");
+
+    script.id = id;
+    script.src = file;
+
+    document.body.appendChild(script);
+}
+
+// =========================================
+// HEADER
+// =========================================
+
+async function loadHeader() {
+
+    await loadHTML(
+        "header",
+        "components/header/header.html"
+    );
+
+    loadCSS(
+        "header-css",
+        "components/header/header.css"
+    );
+
+    loadJS(
+        "header-js",
+        "components/header/header.js"
+    );
+}
+
+// =========================================
+// FOOTER
+// =========================================
+
+async function loadFooter() {
+
+    await loadHTML(
+        "footer",
+        "components/footer/footer.html"
+    );
+
+    loadCSS(
+        "footer-css",
+        "components/footer/footer.css"
+    );
+
+    loadJS(
+        "footer-js",
+        "components/footer/footer.js"
+    );
+}
+
+// =========================================
+// PAGE
+// =========================================
 
 async function loadPage(path) {
 
-    const page = routes[path] || routes["/"];
+    const page = routes[path] || "home";
 
     try {
 
-        const response = await fetch(page);
+        await loadHTML(
+            "app",
+            `pages/${page}/${page}.html`
+        );
 
-        if (!response.ok) {
-            throw new Error(`Cannot load ${page}`);
-        }
+        loadCSS(
+            "page-css",
+            `pages/${page}/${page}.css`
+        );
 
-        document.getElementById("app").innerHTML = await response.text();
-
-        // Initialize page scripts
-        if (typeof window.initSlider === "function") {
-            window.initSlider();
-        }
+        loadJS(
+            "page-js",
+            `pages/${page}/${page}.js`
+        );
 
     } catch (error) {
 
         document.getElementById("app").innerHTML = `
-            <section style="padding:120px 20px;text-align:center;">
-                <h2>404</h2>
+            <section style="padding:150px 20px;text-align:center;">
+                <h1>404</h1>
                 <p>Page not found.</p>
             </section>
         `;
@@ -67,11 +149,11 @@ async function loadPage(path) {
     }
 }
 
-// ===============================
-// NAVIGATION
-// ===============================
+// =========================================
+// SPA NAVIGATION
+// =========================================
 
-document.addEventListener("click", function (e) {
+document.addEventListener("click", (e) => {
 
     const link = e.target.closest("a");
 
@@ -81,7 +163,6 @@ document.addEventListener("click", function (e) {
 
     if (!href) return;
 
-    // Ignore external links
     if (
         href.startsWith("http") ||
         href.startsWith("mailto:") ||
@@ -99,23 +180,25 @@ document.addEventListener("click", function (e) {
 
 });
 
-// ===============================
-// BACK / FORWARD
-// ===============================
+// =========================================
+// BACK BUTTON
+// =========================================
 
 window.addEventListener("popstate", () => {
+
     loadPage(window.location.pathname);
+
 });
 
-// ===============================
+// =========================================
 // INITIAL LOAD
-// ===============================
+// =========================================
 
 window.addEventListener("DOMContentLoaded", async () => {
 
-    await loadComponent("header", "components/header/header.html");
+    await loadHeader();
 
-    await loadComponent("footer", "components/footer/footer.html");
+    await loadFooter();
 
     await loadPage(window.location.pathname);
 
