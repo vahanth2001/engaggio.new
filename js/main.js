@@ -113,9 +113,9 @@ window.addEventListener("popstate", () => {
 
 window.addEventListener("DOMContentLoaded", async () => {
 
-    await loadComponent("header", "components/header.html");
+    await loadComponent("header", "components/header/header.html");
 
-    await loadComponent("footer", "components/footer.html");
+    await loadComponent("footer", "components/footer/footer.html");
 
     await loadPage(window.location.pathname);
 
