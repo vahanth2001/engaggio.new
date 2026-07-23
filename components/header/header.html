@@ -1,0 +1,266 @@
+    <header>
+            <div class="header-container nav">
+                <!-- LOGO -->
+                 <div class="header-logo">
+                    <img src="https://engaggio.com/wp-content/uploads/2026/07/img-e1783275323253.jpeg" alt="Engaggio Logo">
+            </div>
+            <div class="space"> </div>
+            <!-- NAV -->
+            <nav class="header-nav-links" id="mobileMenu">
+                <a href="/">Home</a>
+                <div class="header-nav-dropdown">
+                    <a href="/" class="header-nav-trigger">Who are we <span class="header-arrow">▾</span></a>
+                    <div class="header-dropdown-menu">
+                        <a href="/overview">Overview</a>
+                        <a href ="/team">Team</a>
+                        <a href="/careers">Careers</a>
+                        <a href ="/contact">Contacts</a>
+                    </div>
+                </div>
+                <div class="header-nav-dropdown">
+                    <a href="/" class="header-nav-trigger">What we do <span class="header-arrow">▾</span></a>
+                    <div class="header-dropdown-menu">
+                        <a href="/BeIntelli-2">BeIntelli</a>
+                        <a href="/beenai">BeenAI</a>
+                    </div>
+                </div>
+                <a href="/insights">Insights</a>
+                <a href="/contact" class="header-btn-outline">Request a Demo</a>
+            </nav>
+            <div class="space"> </div>
+            <!-- DESKTOP ACTIONS -->
+            <div class="header-actions">
+                <!-- SEARCH -->
+                <div class="header-search">
+                    <button id="searchToggle" class="header-search-toggle" aria-expanded="true">
+                        <i class="fa fa-search"></i>
+                    </button>
+                    <input id="searchInput" class="header-search-input" type="text" placeholder="Search…" />
+                </div>
+                <!-- SOCIAL -->
+                <div class="header-social">
+                    <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M196.3 512L103.4 512L103.4 212.9L196.3 212.9L196.3 512zM149.8 172.1C120.1 172.1 96 147.5 96 117.8C96 103.5 101.7 89.9 111.8 79.8C121.9 69.7 135.6 64 149.8 64C164 64 177.7 69.7 187.8 79.8C197.9 89.9 203.6 103.6 203.6 117.8C203.6 147.5 179.5 172.1 149.8 172.1zM543.9 512L451.2 512L451.2 366.4C451.2 331.7 450.5 287.2 402.9 287.2C354.6 287.2 347.2 324.9 347.2 363.9L347.2 512L254.4 512L254.4 212.9L343.5 212.9L343.5 253.7L344.8 253.7C357.2 230.2 387.5 205.4 432.7 205.4C526.7 205.4 544 267.3 544 347.7L544 512L543.9 512z"/></svg></a>
+                    <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path d="M523.4 215.7C523.7 220.2 523.7 224.8 523.7 229.3C523.7 368 418.1 527.9 225.1 527.9C165.6 527.9 110.4 510.7 64 480.8C72.4 481.8 80.6 482.1 89.3 482.1C138.4 482.1 183.5 465.5 219.6 437.3C173.5 436.3 134.8 406.1 121.5 364.5C128 365.5 134.5 366.1 141.3 366.1C150.7 366.1 160.1 364.8 168.9 362.5C120.8 352.8 84.8 310.5 84.8 259.5L84.8 258.2C98.8 266 115 270.9 132.2 271.5C103.9 252.7 85.4 220.5 85.4 184.1C85.4 164.6 90.6 146.7 99.7 131.1C151.4 194.8 229 236.4 316.1 240.9C314.5 233.1 313.5 225 313.5 216.9C313.5 159.1 360.3 112 418.4 112C448.6 112 475.9 124.7 495.1 145.1C518.8 140.6 541.6 131.8 561.7 119.8C553.9 144.2 537.3 164.6 515.6 177.6C536.7 175.3 557.2 169.5 576 161.4C561.7 182.2 543.8 200.7 523.4 215.7z"/></svg></a>
+                </div>
+            </div>
+            <!-- HAMBURGER -->
+            <button class="header-hamburger" id="hamburgerBtn"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+        <script>
+    // ===============================
+// HEADER: SEARCH + MOBILE MENU + SUBMENUS
+// ===============================
+
+const hamburgerBtn = document.getElementById("hamburgerBtn");
+const mobileMenu = document.getElementById("mobileMenu");
+const searchToggle = document.getElementById("searchToggle");
+const searchInput = document.getElementById("searchInput");
+const searchWrapper = document.querySelector(".header-search");
+const dropdownTriggers = document.querySelectorAll(".header-nav-trigger");
+
+// ================= SEARCH =================
+if (searchToggle && searchInput && searchWrapper) {
+  searchToggle.addEventListener("click", () => {
+    const isOpen = searchWrapper.classList.toggle("header-active");
+    searchToggle.setAttribute("aria-expanded", isOpen);
+    if (isOpen) setTimeout(() => searchInput.focus(), 120);
+  });
+
+  searchInput.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      searchWrapper.classList.remove("header-active");
+      searchToggle.setAttribute("aria-expanded", "false");
+      searchToggle.focus();
+    }
+  });
+
+  searchInput.addEventListener("blur", () => {
+    setTimeout(() => {
+      searchWrapper.classList.remove("header-active");
+      searchToggle.setAttribute("aria-expanded", "false");
+    }, 120);
+  });
+}
+
+// ================= MOBILE MENU =================
+if (hamburgerBtn && mobileMenu) {
+  hamburgerBtn.addEventListener("click", () => {
+    hamburgerBtn.classList.toggle("header-active");
+    mobileMenu.classList.toggle("header-show");
+  });
+}
+
+// ================= SUBMENUS (MOBILE + TABLET) =================
+dropdownTriggers.forEach(trigger => {
+  trigger.addEventListener("click", (e) => {
+    // Only intercept click on mobile/tablet
+    if (window.innerWidth > 900) return;
+
+    e.preventDefault(); // STOP navigation
+
+    const parentDropdown = trigger.closest(".header-nav-dropdown");
+
+    // Close other open dropdowns
+    document.querySelectorAll(".header-nav-dropdown").forEach(drop => {
+      if (drop !== parentDropdown) {
+        drop.classList.remove("header-open");
+      }
+    });
+
+    // Toggle current dropdown
+    parentDropdown.classList.toggle("header-open");
+  });
+});
+
+// ================= CLOSE MENU ON LINK CLICK =================
+mobileMenu.querySelectorAll(".header-dropdown-menu a, .header-nav-links > a:not(.header-nav-trigger)").forEach(link => {
+  link.addEventListener("click", () => {
+    mobileMenu.classList.remove("header-show");
+    hamburgerBtn.classList.remove("header-active");
+
+    // Close all dropdowns
+    document.querySelectorAll(".header-nav-dropdown").forEach(drop => {
+      drop.classList.remove("header-open");
+    });
+  });
+});
+
+// ================= CLOSE MENU ON RESIZE =================
+window.addEventListener("resize", () => {
+  if (window.innerWidth > 900) {
+    mobileMenu.classList.remove("header-show");
+    hamburgerBtn.classList.remove("header-active");
+    document.querySelectorAll(".header-nav-dropdown").forEach(drop => {
+      drop.classList.remove("header-open");
+    });
+  }
+});
+
+// ===============================
+// SLIDER (HOME PAGE ONLY)
+// ===============================
+
+window.initSlider = function () {
+  const sliderItems = document.getElementById("sliderItems");
+  const prevBtn = document.getElementById("sliderPrev");
+  const nextBtn = document.getElementById("sliderNext");
+  const dots = document.querySelectorAll(".dot");
+
+  // Exit if slider not on page
+  if (!sliderItems || !prevBtn || !nextBtn || !dots.length) return;
+
+  const cards = Array.from(sliderItems.children);
+  let currentSlide = 0;
+  const totalSlides = dots.length;
+
+  function showSlide(index) {
+    currentSlide = index;
+
+    cards.forEach(card => {
+      const slideIndex = Number(card.dataset.slideIndex);
+      card.style.display = slideIndex === index ? "block" : "none";
+    });
+
+    dots.forEach((dot, i) => {
+      dot.classList.toggle("header-active", i === index);
+    });
+  }
+
+  prevBtn.onclick = () => {
+    showSlide((currentSlide - 1 + totalSlides) % totalSlides);
+  };
+
+  nextBtn.onclick = () => {
+    showSlide((currentSlide + 1) % totalSlides);
+  };
+
+  dots.forEach((dot, index) => {
+    dot.onclick = () => showSlide(index);
+  });
+
+  // Init
+  showSlide(0);
+};
+
+// ===============================
+// CLIENT LOGO SLIDER (RESPONSIVE)
+// ===============================
+function initClientsSlider() {
+  const track = document.getElementById("clientsTrack");
+  const prev = document.getElementById("clientsPrev");
+  const next = document.getElementById("clientsNext");
+
+  if (!track || !prev || !next) return;
+
+  const cards = Array.from(track.children);
+  let index = 0;
+
+  // How many logos visible
+  function visibleCount() {
+    if (window.innerWidth <= 520) return 1;
+    if (window.innerWidth <= 900) return 2;
+    return 4; // desktop
+  }
+
+function updateSlider() {
+  if (!cards.length) return;
+
+  const gap = 24;
+  const cardWidth = cards[0].offsetWidth + gap;
+
+  const visible = visibleCount();
+  const maxIndex = Math.max(0, cards.length - visible);
+
+  // Clamp index so it NEVER exceeds the last valid position
+  index = Math.min(Math.max(index, 0), maxIndex);
+
+  track.style.transform = `translateX(-${index * cardWidth}px)`;
+
+  // Disable buttons correctly
+  prev.disabled = index === 0;
+  next.disabled = index === maxIndex;
+}
+
+
+  next.onclick = () => {
+    index++;
+    updateSlider();
+  };
+
+  prev.onclick = () => {
+    index--;
+    updateSlider();
+  };
+
+  window.addEventListener("resize", updateSlider);
+
+  updateSlider();
+}
+
+// SPA-safe reinit
+window.addEventListener("load", initClientsSlider);
+window.addEventListener("hashchange", () => {
+  setTimeout(initClientsSlider, 80);
+});
+
+// Re-init after SPA page load
+window.addEventListener("load", initClientsSlider);
+window.addEventListener("hashchange", () => {
+  setTimeout(initClientsSlider, 50);
+});
+window.addEventListener("scroll", () => {
+    document.querySelector("header")
+        .classList.toggle("scrolled", window.scrollY > 50);
+});
+
+
+// ===============================
+// FOOTER YEAR
+// ===============================
+
+const yearEl = document.getElementById("year");
+if (yearEl) {
+  yearEl.textContent = new Date().getFullYear();
+}
+</script>

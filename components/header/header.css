@@ -1,0 +1,342 @@
+/* ===========================
+   HEADER
+=========================== */
+header{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:999;
+    transition:.35s ease;
+    background:transparent;
+}
+
+header.scrolled{
+    background:#0A1F44;
+    box-shadow:0 8px 25px rgba(0,0,0,.12);
+}
+
+/* ===========================
+   CONTAINER
+=========================== */
+.header-container{
+    max-width:1300px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:22px 32px;
+    transition:.35s;
+}
+
+header.scrolled .header-container{
+    padding:14px 32px;
+}
+
+/* ===========================
+   LOGO
+=========================== */
+.header-logo img{
+    height:52px;
+    display:block;
+}
+
+.space{
+    flex:1;
+}
+
+/* ===========================
+   NAVIGATION
+=========================== */
+.header-nav-links{
+    display:flex;
+    align-items:center;
+    gap:30px;
+}
+
+.header-nav-links>a,
+.header-nav-trigger{
+    color:#fff;
+    text-decoration:none;
+    font-size:15px;
+    font-weight:500;
+    position:relative;
+    transition:.3s;
+}
+
+.header-nav-links>a::after,
+.header-nav-trigger::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-6px;
+    width:0;
+    height:2px;
+    background:#8fb3ff;
+    transition:.3s;
+}
+
+.header-nav-links>a:hover,
+.header-nav-trigger:hover{
+    color:#8fb3ff;
+}
+
+.header-nav-links>a:hover::after,
+.header-nav-trigger:hover::after{
+    width:100%;
+}
+
+/* ===========================
+   DROPDOWN
+=========================== */
+.header-nav-dropdown{
+    position:relative;
+}
+
+.header-dropdown-menu{
+    position:absolute;
+    top:calc(100% + 18px);
+    left:0;
+    min-width:220px;
+    background:#fff;
+    border-radius:10px;
+    overflow:hidden;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(12px);
+    transition:.3s;
+    box-shadow:0 18px 40px rgba(0,0,0,.15);
+}
+
+.header-dropdown-menu a{
+    display:block;
+    padding:14px 18px;
+    color:#111;
+    text-decoration:none;
+    transition:.25s;
+}
+
+.header-dropdown-menu a:hover{
+    background:#f4f7ff;
+    color:#0A1F44;
+}
+
+.header-nav-dropdown:hover .header-dropdown-menu{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+}
+
+.header-arrow{
+    font-size:12px;
+    margin-left:4px;
+}
+
+/* ===========================
+   DEMO BUTTON
+=========================== */
+.header-btn-outline{
+    border:1px solid #fff;
+    padding:10px 18px;
+    border-radius:6px;
+    transition:.3s;
+}
+
+.header-btn-outline:hover{
+    background:#fff;
+    color:#0A1F44 !important;
+}
+
+/* ===========================
+   ACTIONS
+=========================== */
+.header-actions{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+/* ===========================
+   SEARCH
+=========================== */
+.header-search{
+    display:flex;
+    align-items:center;
+    position:relative;
+}
+
+.header-search-toggle{
+    background:none;
+    border:none;
+    color:#fff;
+    cursor:pointer;
+    font-size:18px;
+}
+
+.header-search-input{
+    width:0;
+    opacity:0;
+    border:none;
+    outline:none;
+    margin-left:10px;
+    background:transparent;
+    color:#fff;
+    border-bottom:1px solid rgba(255,255,255,.5);
+    transition:.35s;
+    padding:5px 0;
+}
+
+.header-search.header-active .header-search-input{
+    width:180px;
+    opacity:1;
+}
+
+.header-search-input::placeholder{
+    color:#ddd;
+}
+
+/* ===========================
+   SOCIAL
+=========================== */
+.header-social{
+    display:flex;
+    gap:14px;
+}
+
+.header-social a{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.header-social svg{
+    width:18px;
+    height:18px;
+    fill:#fff;
+    transition:.3s;
+}
+
+.header-social a:hover svg{
+    fill:#8fb3ff;
+}
+
+/* ===========================
+   HAMBURGER
+=========================== */
+.header-hamburger{
+    display:none;
+    width:44px;
+    height:44px;
+    background:none;
+    border:none;
+    cursor:pointer;
+    flex-direction:column;
+    justify-content:center;
+    gap:6px;
+}
+
+.header-hamburger span{
+    width:28px;
+    height:2px;
+    background:#fff;
+    transition:.3s;
+}
+
+.header-hamburger.header-active span:nth-child(1){
+    transform:translateY(8px) rotate(45deg);
+}
+
+.header-hamburger.header-active span:nth-child(2){
+    opacity:0;
+}
+
+.header-hamburger.header-active span:nth-child(3){
+    transform:translateY(-8px) rotate(-45deg);
+}
+
+/* ===========================
+   TABLET
+=========================== */
+@media(max-width:992px){
+
+.header-container{
+    padding:18px 22px;
+}
+
+.header-hamburger{
+    display:flex;
+}
+
+.header-actions{
+    display:none;
+}
+
+.header-nav-links{
+    position:absolute;
+    top:100%;
+    left:0;
+    width:100%;
+    background:#0A1F44;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:0;
+    max-height:0;
+    overflow:hidden;
+    transition:.35s;
+}
+
+.header-nav-links.header-show{
+    max-height:700px;
+}
+
+.header-nav-links>a,
+.header-nav-trigger{
+    width:100%;
+    padding:18px 24px;
+}
+
+.header-nav-dropdown{
+    width:100%;
+}
+
+.header-dropdown-menu{
+    position:static;
+    opacity:1;
+    visibility:visible;
+    transform:none;
+    box-shadow:none;
+    border-radius:0;
+    background:#143060;
+    display:none;
+}
+
+.header-nav-dropdown.header-open .header-dropdown-menu{
+    display:block;
+}
+
+.header-dropdown-menu a{
+    color:#fff;
+    padding-left:42px;
+}
+
+.header-dropdown-menu a:hover{
+    background:#1b3f7c;
+    color:#fff;
+}
+
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+@media(max-width:576px){
+
+.header-logo img{
+    height:44px;
+}
+
+.header-container{
+    padding:16px;
+}
+
+}
