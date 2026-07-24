@@ -1,0 +1,325 @@
+/* =========================================
+   HOME PAGE
+========================================= */
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero-home{
+    width:100%;
+    min-height:100vh;
+
+    position:relative;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    overflow:hidden;
+
+    background:#0A1F44;
+}
+
+
+.home-hero-image{
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+    object-position:center;
+}
+
+
+/* =========================================
+   COMMON HOME CONTAINER
+========================================= */
+
+.home-container-section{
+    width:100%;
+    max-width:1250px;
+
+    margin:0 auto;
+
+    padding-left:30px;
+    padding-right:30px;
+}
+
+
+/* =========================================
+   PLATFORMS SECTION
+========================================= */
+
+.home-platforms-section{
+    padding:100px 0;
+
+    background:#fff;
+}
+
+
+/* =========================================
+   SECTION TITLE
+========================================= */
+
+.home-section-title{
+    max-width:900px;
+
+    margin:0 auto 65px;
+
+    text-align:center;
+}
+
+
+.home-section-title h2{
+    margin-bottom:25px;
+
+    font-size:36px;
+    line-height:1.2;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+    color:#0A1F44;
+}
+
+
+.home-section-title p{
+    margin-bottom:18px;
+
+    font-size:16px;
+    line-height:1.8;
+
+    color:#555;
+}
+
+
+.home-section-title p:last-child{
+    margin-bottom:0;
+}
+
+
+/* =========================================
+   PLATFORM GRID
+========================================= */
+
+.home-platforms-grid{
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:35px;
+}
+
+
+/* =========================================
+   PLATFORM CARD
+========================================= */
+
+.home-platform-card{
+    padding:45px;
+
+    background:#fff;
+
+    border:1px solid #e8e8e8;
+
+    border-radius:14px;
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,.06);
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease,
+        border-color .3s ease;
+}
+
+
+.home-platform-card:hover{
+    transform:translateY(-8px);
+
+    border-color:#d8e3f7;
+
+    box-shadow:
+        0 20px 50px rgba(10,31,68,.12);
+}
+
+
+/* =========================================
+   PLATFORM LOGO
+========================================= */
+
+.home-platform-logo{
+    height:90px;
+
+    margin-bottom:25px;
+
+    display:flex;
+    align-items:center;
+}
+
+
+.home-platform-logo img{
+    max-width:220px;
+    max-height:80px;
+
+    width:auto;
+    height:auto;
+
+    object-fit:contain;
+}
+
+
+/* =========================================
+   PLATFORM TEXT
+========================================= */
+
+.home-platform-card p{
+    min-height:85px;
+
+    margin-bottom:25px;
+
+    font-size:16px;
+    line-height:1.7;
+
+    color:#555;
+}
+
+
+/* =========================================
+   PLATFORM LINK
+========================================= */
+
+.home-platform-link{
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    color:#0A1F44;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    text-decoration:none;
+
+    transition:.3s ease;
+}
+
+
+.home-platform-link span{
+    transition:transform .3s ease;
+}
+
+
+.home-platform-link:hover{
+    color:#2563EB;
+}
+
+
+.home-platform-link:hover span{
+    transform:translateX(5px);
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media(max-width:900px){
+
+    .hero-home{
+        min-height:75vh;
+    }
+
+
+    .home-platforms-section{
+        padding:80px 0;
+    }
+
+
+    .home-platforms-grid{
+        grid-template-columns:1fr;
+    }
+
+
+    .home-platform-card p{
+        min-height:auto;
+    }
+
+
+    .home-section-title h2{
+        font-size:32px;
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:576px){
+
+    .hero-home{
+        min-height:60vh;
+    }
+
+
+    .home-hero-image{
+        object-position:center;
+    }
+
+
+    .home-container-section{
+        padding-left:20px;
+        padding-right:20px;
+    }
+
+
+    .home-platforms-section{
+        padding:60px 0;
+    }
+
+
+    .home-section-title{
+        margin-bottom:40px;
+    }
+
+
+    .home-section-title h2{
+        font-size:27px;
+        margin-bottom:20px;
+    }
+
+
+    .home-section-title p{
+        font-size:15px;
+        line-height:1.7;
+    }
+
+
+    .home-platform-card{
+        padding:30px 25px;
+    }
+
+
+    .home-platform-logo{
+        height:70px;
+    }
+
+
+    .home-platform-logo img{
+        max-width:180px;
+        max-height:65px;
+    }
+
+}
