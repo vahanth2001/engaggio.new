@@ -61,11 +61,11 @@ header.scrolled .header-container{
     display:flex;
     align-items:center;
     gap:28px;
-        color:#0d037c;
 }
 
 .header-nav-links a,
 .header-nav-trigger{
+    color:#0d037c;
     text-decoration:none;
     background:none;
     border:none;
