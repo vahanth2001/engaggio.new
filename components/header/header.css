@@ -17,6 +17,42 @@ header.scrolled{
     box-shadow:0 8px 25px rgba(0,0,0,.15);
 }
 
+/* Menu colors BEFORE scrolling */
+
+.header-nav-links a,
+.header-nav-trigger{
+    color:#0d037c;
+}
+
+
+/* Menu colors AFTER scrolling */
+
+header.scrolled .header-nav-links > a,
+header.scrolled .header-nav-trigger{
+    color:#fff;
+}
+
+
+/* Search after scrolling */
+
+header.scrolled .header-search-toggle{
+    color:#fff;
+}
+
+
+/* Social icons after scrolling */
+
+header.scrolled .header-social svg{
+    fill:#fff;
+}
+
+
+/* Hamburger after scrolling */
+
+header.scrolled .header-hamburger span{
+    background:#fff;
+}
+
 /* ===========================
    CONTAINER
 =========================== */

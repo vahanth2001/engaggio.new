@@ -1,10 +1,10 @@
-// ==========================================
-// HEADER
-// ==========================================
+(function () {
 
-(function initHeader() {
+    // ===============================
+    // ELEMENTS
+    // ===============================
 
-    const header = document.querySelector("header");
+    const header = document.querySelector("#header header");
     const hamburgerBtn = document.getElementById("hamburgerBtn");
     const mobileMenu = document.getElementById("mobileMenu");
 
@@ -16,31 +16,29 @@
         document.querySelectorAll(".header-nav-trigger");
 
 
-    // ==========================================
-    // HEADER SCROLL BACKGROUND
-    // ==========================================
+    // ===============================
+    // HEADER SCROLL
+    // ===============================
 
-    function handleHeaderScroll() {
+    function updateHeader() {
 
         if (!header) return;
 
-        if (window.scrollY > 50) {
-            header.classList.add("scrolled");
-        } else {
-            header.classList.remove("scrolled");
-        }
-
+        header.classList.toggle(
+            "scrolled",
+            window.scrollY > 50
+        );
     }
 
-    window.addEventListener("scroll", handleHeaderScroll);
+    window.addEventListener("scroll", updateHeader);
 
-    // Check immediately
-    handleHeaderScroll();
+    // Important for page reload while already scrolled
+    updateHeader();
 
 
-    // ==========================================
+    // ===============================
     // SEARCH
-    // ==========================================
+    // ===============================
 
     if (searchToggle && searchInput && searchWrapper) {
 
@@ -92,30 +90,27 @@
             }, 120);
 
         });
-
     }
 
 
-    // ==========================================
-    // MOBILE MENU
-    // ==========================================
+    // ===============================
+    // HAMBURGER
+    // ===============================
 
     if (hamburgerBtn && mobileMenu) {
 
         hamburgerBtn.addEventListener("click", () => {
 
             hamburgerBtn.classList.toggle("header-active");
-
             mobileMenu.classList.toggle("header-show");
 
         });
-
     }
 
 
-    // ==========================================
+    // ===============================
     // MOBILE DROPDOWNS
-    // ==========================================
+    // ===============================
 
     dropdownTriggers.forEach(trigger => {
 
@@ -123,25 +118,23 @@
 
             if (window.innerWidth > 900) return;
 
-            const parentDropdown =
+            const parent =
                 trigger.closest(".header-nav-dropdown");
 
-            if (!parentDropdown) return;
+            if (!parent) return;
 
 
             // Close other dropdowns
             document
                 .querySelectorAll(".header-nav-dropdown")
-                .forEach(drop => {
+                .forEach(dropdown => {
 
-                    if (drop !== parentDropdown) {
+                    if (dropdown !== parent) {
 
-                        drop.classList.remove("header-open");
+                        dropdown.classList.remove("header-open");
 
                         const button =
-                            drop.querySelector(
-                                ".header-nav-trigger"
-                            );
+                            dropdown.querySelector(".header-nav-trigger");
 
                         if (button) {
                             button.setAttribute(
@@ -149,15 +142,13 @@
                                 "false"
                             );
                         }
-
                     }
-
                 });
 
 
-            // Open/close selected dropdown
+            // Toggle current dropdown
             const isOpen =
-                parentDropdown.classList.toggle("header-open");
+                parent.classList.toggle("header-open");
 
             trigger.setAttribute(
                 "aria-expanded",
@@ -169,49 +160,39 @@
     });
 
 
-    // ==========================================
-    // CLOSE MOBILE MENU AFTER LINK CLICK
-    // ==========================================
+    // ===============================
+    // CLOSE MOBILE MENU AFTER CLICK
+    // ===============================
 
     if (mobileMenu) {
 
-        mobileMenu
-            .querySelectorAll("a")
-            .forEach(link => {
+        mobileMenu.querySelectorAll("a").forEach(link => {
 
-                link.addEventListener("click", () => {
+            link.addEventListener("click", () => {
 
-                    mobileMenu.classList.remove("header-show");
+                mobileMenu.classList.remove("header-show");
 
-                    if (hamburgerBtn) {
-                        hamburgerBtn.classList.remove(
-                            "header-active"
-                        );
-                    }
+                if (hamburgerBtn) {
+                    hamburgerBtn.classList.remove("header-active");
+                }
 
+                document
+                    .querySelectorAll(".header-nav-dropdown")
+                    .forEach(dropdown => {
 
-                    document
-                        .querySelectorAll(
-                            ".header-nav-dropdown"
-                        )
-                        .forEach(drop => {
+                        dropdown.classList.remove("header-open");
 
-                            drop.classList.remove(
-                                "header-open"
-                            );
-
-                        });
-
-                });
+                    });
 
             });
 
+        });
     }
 
 
-    // ==========================================
-    // RESIZE
-    // ==========================================
+    // ===============================
+    // WINDOW RESIZE
+    // ===============================
 
     window.addEventListener("resize", () => {
 
@@ -225,15 +206,13 @@
                 hamburgerBtn.classList.remove("header-active");
             }
 
-
             document
                 .querySelectorAll(".header-nav-dropdown")
-                .forEach(drop => {
+                .forEach(dropdown => {
 
-                    drop.classList.remove("header-open");
+                    dropdown.classList.remove("header-open");
 
                 });
-
         }
 
     });
